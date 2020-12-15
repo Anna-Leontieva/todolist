@@ -1,4 +1,7 @@
 import React from 'react';
+import Footer from './Footer';
+import Header from './Header';
+import List from './List';
 
 type TaskType = {
     id: number
@@ -13,6 +16,8 @@ type PropsType = {
 function TodoList(props: PropsType) {
     return (
         <div className="App">
+         <Header/>
+        <List/>
             <div>
                 <h3>{props.title}</h3>
                 <div>
@@ -20,9 +25,16 @@ function TodoList(props: PropsType) {
                     <button>+</button>
                 </div>
                 <ul>
-                    <li><input type="checkbox" checked={props.tasks[0].isDone} /> <span>{props.tasks[0].title}</span></li>
-                    <li><input type="checkbox" checked={props.tasks[1].isDone} /> <span>{props.tasks[1].title}</span></li>
-                    <li><input type="checkbox" checked={props.tasks[2].isDone} /> <span>{props.tasks[2].title}</span></li>
+           {
+                props.tasks.map(task =>{
+                    return(
+                    <li>
+                    <input type="checkbox" checked={task.isDone} /> 
+                    <span>{task.title}</span>
+                    </li>)
+                })
+           
+              }
                 </ul>
                 <div>
                     <button>All</button>
@@ -30,6 +42,7 @@ function TodoList(props: PropsType) {
                     <button>Completed</button>
                 </div>
             </div>
+            <Footer/>
         </div>
     );
 }
