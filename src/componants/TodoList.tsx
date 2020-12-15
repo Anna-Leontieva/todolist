@@ -1,23 +1,15 @@
 import React from 'react';
-import Footer from './Footer';
-import Header from './Header';
-import List from './List';
-
-type TaskType = {
-    id: number
-    title: string
-    isDone: boolean
-}
-type PropsType = {
+import {TaskType} from './../App';
+type TodoListType = {
     title: string
     tasks: Array<TaskType>
+    removeTask: (taskID:number)=>void
 }
 
-function TodoList(props: PropsType) {
+function TodoList(props: TodoListType) {
     return (
         <div className="App">
-         <Header/>
-        <List/>
+
             <div>
                 <h3>{props.title}</h3>
                 <div>
@@ -31,6 +23,7 @@ function TodoList(props: PropsType) {
                     <li>
                     <input type="checkbox" checked={task.isDone} /> 
                     <span>{task.title}</span>
+                    <button onClick={()=>{props.removeTask(task.id)}}>x</button>
                     </li>)
                 })
            
@@ -42,7 +35,6 @@ function TodoList(props: PropsType) {
                     <button>Completed</button>
                 </div>
             </div>
-            <Footer/>
         </div>
     );
 }
