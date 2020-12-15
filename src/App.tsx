@@ -1,5 +1,8 @@
 import React from 'react';
 import './App.css';
+import Footer from './componants/Footer';
+import Header from './componants/Header';
+import List from './componants/List';
 import TodoList from './TodoList';
 
 function App() {
@@ -15,9 +18,13 @@ function App() {
     ]
     return (
         <div className="App">
-            <TodoList title="What to learn" tasks={tasks1} />
-            <TodoList title="Movies" tasks={tasks2} />
+            <Header/>
+            <List/>
+            <TodoList title={"What to learn"} tasks={tasks1} />
+            <TodoList title={"Movies"} tasks={tasks2} />
+            <Footer/>
         </div>
     )
 }
+
 export default App;
