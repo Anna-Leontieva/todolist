@@ -1,9 +1,10 @@
 import React from 'react';
-import {TaskType} from './../App';
+import {FilterValuesType, TaskType} from './../App';
 type TodoListType = {
     title: string
     tasks: Array<TaskType>
     removeTask: (taskID:number)=>void
+    changeFilter:(filterValue:FilterValuesType)=>void
 }
 
 function TodoList(props: TodoListType) {
@@ -30,9 +31,9 @@ function TodoList(props: TodoListType) {
               }
                 </ul>
                 <div>
-                    <button>All</button>
-                    <button>Active</button>
-                    <button>Completed</button>
+                    <button  onClick={()=>{props.changeFilter("all")}}>All</button>
+                    <button onClick={()=>{props.changeFilter("active")}}>Active</button>
+                    <button onClick={()=>{props.changeFilter("complited")}}>Completed</button>
                 </div>
             </div>
         </div>
