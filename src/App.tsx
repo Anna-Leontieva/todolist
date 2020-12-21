@@ -30,6 +30,14 @@ const[filter,setFilter]=useState<FilterValuesType>("all")
     function changeFilter(filterValue:FilterValuesType){
         setFilter(filterValue);
     }
+    function addTask(){
+        const newTask:TaskType={
+            id:v1(),
+            title:"Task",
+            isDone:false
+        }
+        setTask([newTask,...tasks])
+    }
     let tasksForTodoList = tasks;
     if(filter==="active"){
         tasksForTodoList =tasks.filter(t=>t.isDone === false);
