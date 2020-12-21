@@ -30,13 +30,13 @@ const[filter,setFilter]=useState<FilterValuesType>("all")
     function changeFilter(filterValue:FilterValuesType){
         setFilter(filterValue);
     }
-    function addTask(){
+    function addTask(){      //Добавлять новую таску,новый массив
         const newTask:TaskType={
             id:v1(),
             title:"Task",
             isDone:false
         }
-        setTask([newTask,...tasks])
+        setTask([newTask,...tasks])//setTask типо переменная const
     }
     let tasksForTodoList = tasks;
     if(filter==="active"){
@@ -52,6 +52,7 @@ const[filter,setFilter]=useState<FilterValuesType>("all")
             tasks={tasksForTodoList} 
             removeTask={removeTask}
             changeFilter={changeFilter}
+            addTask={addTask}
              />
         </div>
     )
