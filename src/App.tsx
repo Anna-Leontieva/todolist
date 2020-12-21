@@ -7,7 +7,6 @@ export type TaskType = {
     id:number
 }
 export type FilterValuesType = "all" |"active" |"complited";
-
 function App() {
     
     const[tasks, setTask] = useState<Array<TaskType>>(
