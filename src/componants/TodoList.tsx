@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import {FilterValuesType, TaskType} from './../App';
 type TodoListType = {
     title: string
@@ -10,6 +10,9 @@ type TodoListType = {
 
 function TodoList(props: TodoListType) {
     const[title,setTitle] = useState<string>("dddeeeeeedd");
+    const addTask =()=>{props.addTask(title)
+        setTitle("");   //щбнуление поля вода после введения таски
+    };
     return (
         <div className="App">
 
@@ -17,9 +20,10 @@ function TodoList(props: TodoListType) {
                 <h3>{props.title}</h3>
                 <div>
   {/* локальный импут   */}   <input value={title} 
-                               onChange={(e)=>{setTitle(e.currentTarget.value)}}/> 
+                               onChange={(e)=>{setTitle(e.currentTarget.value)}}
+                               onKeyPress={(e)=>{if(e.key === "Enter")addTask()}}/>  {/*При нажатиии Enter будет вводиться  Task */}
   {/* e.currentTarget ==== input */}
-                    <button onClick={()=>{props.addTask(title)}}>+</button>
+                    <button onClick={addTask}>+</button>
                 </div>
                 <ul>
            {
