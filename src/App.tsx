@@ -1,4 +1,5 @@
 import React,{useState} from 'react';
+import { v1 } from 'uuid';
 import './App.css';
 import TodoList from './componants/TodoList';
 export type TaskType = {
@@ -8,7 +9,7 @@ export type TaskType = {
 }
 export type FilterValuesType = "all" |"active" |"complited";
 function App() {
-    
+    console.log(v1());
     const[tasks, setTask] = useState<Array<TaskType>>(
         [
             {id: 1, title: "HTML&CSS", isDone: true },
