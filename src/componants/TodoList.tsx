@@ -3,7 +3,7 @@ import {FilterValuesType, TaskType} from './../App';
 type TodoListType = {
     title: string
     tasks: Array<TaskType>
-    removeTask: (taskID:number)=>void
+    removeTask: (taskID:string)=>void
     changeFilter:(filterValue:FilterValuesType)=>void
 }
 
