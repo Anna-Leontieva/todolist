@@ -16,9 +16,9 @@ function TodoList(props: TodoListType) {
 
     const onChangeHandler = (e:ChangeEvent<HTMLInputElement>)=>{setTitle(e.currentTarget.value)}
     const onKeyPressHandler = (e:KeyboardEvent<HTMLInputElement>)=>{if(e.key === "Enter")addTask()}
-    const onAllClickHandler = ()=>{props.changeFilter("all")}
-    const onActiveClickHandler = ()=>{props.changeFilter("active")}
-    const onComplitedClickHandler = ()=>{props.changeFilter("complited")}
+    const onAllClickHandler = () => {props.changeFilter("all")}
+    const onActiveClickHandler = () => {props.changeFilter("active")}
+    const onComplitedClickHandler = () => {props.changeFilter("complited")}
     return (
         <div className="App">
 
