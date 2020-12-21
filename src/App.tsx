@@ -30,10 +30,10 @@ const[filter,setFilter]=useState<FilterValuesType>("all")
     function changeFilter(filterValue:FilterValuesType){
         setFilter(filterValue);
     }
-    function addTask(){      //Добавлять новую таску,новый массив
+    function addTask(title:string){      //Добавлять новую таску,новый массив
         const newTask:TaskType={
             id:v1(),
-            title:"Task",
+            title: title,
             isDone:false
         }
         setTask([newTask,...tasks])//setTask типо переменная const
