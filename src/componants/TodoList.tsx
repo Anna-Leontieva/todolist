@@ -50,7 +50,8 @@ function TodoList(props: TodoListType) {
                     const removeTask = () => {props.removeTask(task.id)}
                     const changeStatus = (e:ChangeEvent<HTMLInputElement>)=>{props.changeStatus(task.id,e.currentTarget.checked)}
                     return(
-                   <li key={task.id}>
+                   <li key={task.id}
+                   className={task.isDone?"is-done":""}>
                         {/* // kеу нужно для того чтоби Реакт отличал одну Ли-шку от другой */}
                     <input
                      type="checkbox" 
