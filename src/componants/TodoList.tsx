@@ -6,15 +6,27 @@ type TodoListType = {
     removeTask: (taskID:string)=>void
     changeFilter:(filterValue:FilterValuesType)=>void
     addTask:(title:string)=>void
+    changeStatus:(taskID:string,isDone:boolean)=>void
+    filter:FilterValuesType
 }
 
 function TodoList(props: TodoListType) {
     const[title,setTitle] = useState<string>("dddeeeeeedd");
-    const addTask =()=>{props.addTask(title)
-        setTitle("");   //обнуление поля вода после введения таски
+    const[error,setError] = useState<string| null>(null);
+
+    const addTask =()=>{
+        const taskTitle = title.trim()
+        if(taskTitle){
+        props.addTask(taskTitle) //обнуление поля вода после введения таски
+        } else {
+            setError("Title is reqiured")
+        }
+        setTitle("");
     };
 
-    const onChangeHandler = (e:ChangeEvent<HTMLInputElement>)=>{setTitle(e.currentTarget.value)}
+    const onChangeHandler = (e:ChangeEvent<HTMLInputElement>)=>{
+        setError(null)
+        setTitle(e.currentTarget.value)}
     const onKeyPressHandler = (e:KeyboardEvent<HTMLInputElement>)=>{if(e.key === "Enter")addTask()}
     const onAllClickHandler = () => {props.changeFilter("all")}
     const onActiveClickHandler = () => {props.changeFilter("active")}
@@ -30,25 +42,39 @@ function TodoList(props: TodoListType) {
                                onKeyPress={onKeyPressHandler}/>  {/*При нажатиии Enter будет вводиться  Task */}
   {/* e.currentTarget ==== input */}
                     <button onClick={addTask}>+</button>
+                    {error &&<div className={"error-message"}>{error}</div>}
                 </div>
                 <ul>
            {
                 props.tasks.map(task =>{
                     const removeTask = () => {props.removeTask(task.id)}
+                    const changeStatus = (e:ChangeEvent<HTMLInputElement>)=>{props.changeStatus(task.id,e.currentTarget.checked)}
                     return(
-                    <li>
-                    <input type="checkbox" checked={task.isDone} /> 
+                   <li key={task.id}>
+                        {/* // kеу нужно для того чтоби Реакт отличал одну Ли-шку от другой */}
+                    <input
+                     type="checkbox" 
+                     checked={task.isDone}
+                     onChange={changeStatus} 
+                     className={error?"error":""}/>  
                     <span>{task.title}</span>
                     <button onClick={removeTask}>x</button>
+
                     </li>)
                 })
            
               }
                 </ul>
                 <div>
-                    <button  onClick={onAllClickHandler}>All</button>
-                    <button onClick={onActiveClickHandler}>Active</button>
-                    <button onClick={onComplitedClickHandler}>Completed</button>
+                    <button 
+                   className={props.filter==="all"?"active-filter":""} 
+                    onClick={onAllClickHandler}>All</button>
+                    <button 
+                    className={props.filter==="active"?"active-filter":""} 
+                    onClick={onActiveClickHandler}>Active</button>
+                    <button 
+                    className={props.filter==="complited"?"active-filter":""} 
+                    onClick={onComplitedClickHandler}>Completed</button>
                 </div>
             </div>
         </div>

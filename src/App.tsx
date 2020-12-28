@@ -20,6 +20,8 @@ function App() {
             { id: v1(), title: "GGGG", isDone: false},
             { id: v1(), title: "VVVVVV", isDone: false}
         ])
+
+
 const[filter,setFilter]=useState<FilterValuesType>("all")
 
   function removeTask(taskID:string){
@@ -38,6 +40,18 @@ const[filter,setFilter]=useState<FilterValuesType>("all")
         }
         setTask([newTask,...tasks])//setTask типо переменная const
     }
+
+
+
+    function changeStatus(taskID:string, isDone:boolean){
+        const task=tasks.find(t=>t.id === taskID)      ///find помогает найти нужный єлемент по ID и віходит из массива (достает 1 єлемент)
+        if(task){
+            task.isDone = isDone
+            setTask([...tasks])
+        }
+
+    }
+
     let tasksForTodoList = tasks;
     if(filter==="active"){
         tasksForTodoList =tasks.filter(t=>t.isDone === false);
@@ -49,10 +63,12 @@ const[filter,setFilter]=useState<FilterValuesType>("all")
     return (
         <div className="App">
             <TodoList title={"What to learn"} 
+            filter={filter}
             tasks={tasksForTodoList} 
             removeTask={removeTask}
             changeFilter={changeFilter}
             addTask={addTask}
+            changeStatus={changeStatus}
              />
         </div>
     )
