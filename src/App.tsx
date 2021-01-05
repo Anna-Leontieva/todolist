@@ -23,7 +23,7 @@ function App() {
     const todoListID2=v1();
 
     const [todoLists,setTodoLists]=useState<Array<TodoListType>>([
-        {id:todoListID1,title:"What to learn", filter:"active"},
+        {id:todoListID1,title:"What to learn", filter:"all"},
         {id:todoListID2,title:"What to buy",filter:"all"}
     ])
 
@@ -81,7 +81,7 @@ function App() {
                     let tasksForTodoList=tasks[tl.id];//tasks[tl.id]-oбьект,кторый имеет ключ-значение(обращение к обьекту)
                     if (tl.filter === "active") {
                    tasksForTodoList = tasks[tl.id].filter(t => t.isDone === false);}
-                   
+
                    if (tl.filter === "complited") {
                     tasksForTodoList = tasks[tl.id].filter(t => t.isDone === true);
                    }
