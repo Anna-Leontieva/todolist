@@ -7,47 +7,69 @@ export type TaskType = {
     isDone: boolean
     id: string
 }
+type TodoListType={
+    id:string
+    title:string
+    filter:FilterValuesType
+}
+
+
 export type FilterValuesType = "all" | "active" | "complited";
+type TaskStateType={
+    [key:string]:Array<TaskType>
+}
 function App() {
-    console.log(v1());
-    const [tasks, setTask] = useState<Array<TaskType>>(
-        [
-            { id: v1(), title: "HTML&CSS", isDone: true },
-            { id: v1(), title: "JS", isDone: true },
-            { id: v1(), title: "ReactJS", isDone: false },
-            { id: v1(), title: "AAAAA", isDone: true },
-            { id: v1(), title: "BBBB", isDone: true },
-            { id: v1(), title: "GGGG", isDone: false },
-            { id: v1(), title: "VVVVVV", isDone: false }
-        ])
+    const todoListID1=v1();
+    const todoListID2=v1();
+
+    const [todoLists,setTodoLists]=useState<Array<TodoListType>>([
+        {id:todoListID1,title:"What to learn", filter:"active"},
+        {id:todoListID2,title:"What to buy",filter:"all"}
+    ])
 
 
-    const [filter, setFilter] = useState<FilterValuesType>("all")
+    const [tasks, setTask] = useState<TaskStateType>({
+        [todoListID1]:[ { id: v1(), title: "HTML&CSS", isDone: true },
+        { id: v1(), title: "JS", isDone: true },
+        { id: v1(), title: "ReactJS", isDone: false }],
+        [todoListID2]:[ { id: v1(), title: "HTML&CSS", isDone: true },
+        { id: v1(), title: "JS", isDone: true },
+        { id: v1(), title: "ReactJS", isDone: false },
+        ]
+    })
 
-    function removeTask(taskID: string) {
-        const newTasks = tasks.filter(task => task.id !== taskID)
-        setTask(newTasks)
+
+    // const [filter, setFilter] = useState<FilterValuesType>("all")
+
+    function removeTask(taskID: string,todoListID:string) {
+        const todoListTasks=tasks[todoListID];    
+        tasks[todoListID] = todoListTasks.filter(task => task.id !== taskID) // setTasks({...tasks}, [todoListID]:tasks[todoListID]..filter(task => task.id !== taskID))  одно и тоже
+        setTask({...tasks});
     }
 
-    function changeFilter(filterValue: FilterValuesType) {
-        setFilter(filterValue);
+    function changeFilter(filterValue: FilterValuesType,todoListID:string) {
+        const todoList=todoLists.find(tl=>tl.id===todoListID);
+        if(todoList){
+            todoList.filter=filterValue;
+            setTodoLists([...todoLists])
+        }
     }
-    function addTask(title: string) {      //Добавлять новую таску,новый массив
+    function addTask(title: string,todoListID:string) {      //Добавлять новую таску,новый массив
         const newTask: TaskType = {
             id: v1(),
             title: title,
             isDone: false
         }
-        setTask([newTask, ...tasks])//setTask типо переменная const
+        tasks[todoListID]=[newTask,...tasks[todoListID]]
+        setTask({...tasks})//setTask типо переменная const
     }
 
-
-
-    function changeStatus(taskID: string, isDone: boolean) {
-        const task = tasks.find(t => t.id === taskID)      ///find помогает найти нужный єлемент по ID и віходит из массива (достает 1 єлемент)
+    function changeStatus(taskID: string, isDone: boolean,todoListID:string) {
+        const todoListTasks =tasks[todoListID];
+        const task = todoListTasks.find(t => t.id === taskID)      ///find помогает найти нужный єлемент по ID и віходит из массива (достает 1 єлемент)
         if (task) {
             task.isDone = isDone
-            setTask([...tasks])
+            setTask({...tasks})
         }
 
     }
