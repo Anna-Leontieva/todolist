@@ -74,24 +74,33 @@ function App() {
 
     }
 
-    let tasksForTodoList = tasks;
-    if (filter === "active") {
-        tasksForTodoList = tasks.filter(t => t.isDone === false);
-    }
-    if (filter === "complited") {
-        tasksForTodoList = tasks.filter(t => t.isDone === true);
-    }
-    //UI:
     return (
         <div className="App">
-            <TodoList title={"What to learn"}
-                filter={filter}
-                tasks={tasksForTodoList}
-                removeTask={removeTask}
-                changeFilter={changeFilter}
-                addTask={addTask}
-                changeStatus={changeStatus}
-            />
+            {
+                todoLists.map(tl=>{
+                    let tasksForTodoList=tasks[tl.id];//tasks[tl.id]-oбьект,кторый имеет ключ-значение(обращение к обьекту)
+                    if (tl.filter === "active") {
+                   tasksForTodoList = tasks[tl.id].filter(t => t.isDone === false);}
+                   
+                   if (tl.filter === "complited") {
+                    tasksForTodoList = tasks[tl.id].filter(t => t.isDone === true);
+                   }
+
+                    return(
+                    <TodoList 
+                    key={tl.id}
+                    id={tl.id}
+                    title={tl.title}
+                    filter={tl.filter}
+                    tasks={tasksForTodoList}
+                    removeTask={removeTask}
+                    changeFilter={changeFilter}
+                    addTask={addTask}
+                    changeStatus={changeStatus}
+                />)
+                })
+            }
+            
         </div>
     )
 }
