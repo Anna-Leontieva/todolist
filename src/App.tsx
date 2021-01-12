@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { v1 } from 'uuid';//авто импорт id
+import AddItemForm from './AddItemForm';
 import './App.css';
 import TodoList from './componants/TodoList';
 export type TaskType = {
@@ -88,6 +89,7 @@ function App() {
     }
     return (
         <div className="App">
+            <AddItemForm addItem={addTodoList}/>
             {
                 todoLists.map(tl => {
                     let tasksForTodoList = tasks[tl.id];//tasks[tl.id]-oбьект,кторый имеет ключ-значение(обращение к обьекту)

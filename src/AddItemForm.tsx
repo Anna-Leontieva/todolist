@@ -25,6 +25,7 @@ function AddItemForm(props:AddItemFormPropsType){
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => { if (e.key === "Enter") addItem() }
     return(
         <div>
+     
         {/* локальный импут, e.currentTarget===input   */}   <input value={title}
             onChange={onChangeHandler}
             onKeyPress={onKeyPressHandler} 
