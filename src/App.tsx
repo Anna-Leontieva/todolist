@@ -74,6 +74,7 @@ function App() {
         }
 
     }
+
     function changeTaskTitle(taskID: string, title:string, todoListID: string) {
         const todoListTasks = tasks[todoListID];
         const task = todoListTasks.find(t => t.id === taskID)      ///find помогает найти нужный єлемент по ID и віходит из массива (достает 1 єлемент)
@@ -83,6 +84,7 @@ function App() {
         }
 
     }
+    
     function addTodoList(todoListTitle: string) {
         const todoListID = v1();
         const newTodoList: TodoListType = {
@@ -96,6 +98,14 @@ function App() {
             [todoListID]: []
         })
     }
+    function changeTodoListTitle(title:string,todoListID:string){
+        const todoList=todoLists.find(tl=>tl.id===todoListID);
+          if(todoListID){
+            todoList.title=title;
+              setTodoLists([...todoLists])
+  
+          }
+      }
     return (
         <div className="App">
             <AddItemForm addItem={addTodoList}/>
@@ -122,6 +132,7 @@ function App() {
                             addTask={addTask}
                             changeStatus={changeStatus}
                             changeTaskTitle={changeTaskTitle}
+                            changeTodoListTitle={changeTodoListTitle}
                         />)
                 })
             }

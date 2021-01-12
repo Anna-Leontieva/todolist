@@ -1,3 +1,4 @@
+import { title } from 'process';
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import AddItemForm from '../AddItemForm';
 import EditableSpan from '../EditableSpan';
@@ -12,6 +13,7 @@ type NewType = {
     changeStatus: (taskID: string, isDone: boolean, todoListID: string) => void;
     filter: FilterValuesType;
     changeTaskTitle: (taskID: string, title: string, todoListID: string) => void;
+    changeTodoListTitle:(title:string,todoListID: string)=>void
 };
 
 type TodoListType = NewType
@@ -24,12 +26,14 @@ function TodoList(props: TodoListType) {
     const onAllClickHandler = () => { props.changeFilter("all",props.id) }
     const onActiveClickHandler = () => { props.changeFilter("active",props.id) }
     const onComplitedClickHandler = () => { props.changeFilter("complited",props.id) }
-    
+    const changeTitle=(title:string)=>{
+        props.changeTodoListTitle(title,props.id)
+    }
     return (
         <div className="App">
 
             <div>
-                <h3>{props.title}</h3>
+                <h3><EditableSpan title={props.title} changeTitle={changeTitle}/></h3>
                <AddItemForm addItem={addTask}/>
                 <ul>
                     {
