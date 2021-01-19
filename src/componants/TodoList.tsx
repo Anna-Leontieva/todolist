@@ -4,6 +4,7 @@ import AddItemForm from '../AddItemForm';
 import EditableSpan from '../EditableSpan';
 import { FilterValuesType, TaskType } from './../App';
 import {IconButton} from '@material-ui/core';
+import {Button} from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
 type TodoListType = {
     id: string;
@@ -62,15 +63,15 @@ function TodoList(props: TodoListType) {
                     }
                 </ul>
                 <div>
-                    <button
+                    <Button
                         className={props.filter === "all" ? "active-filter" : ""}
-                        onClick={onAllClickHandler}>All</button>
-                    <button
+                        onClick={onAllClickHandler}>All</Button>
+                    <Button
                         className={props.filter === "active" ? "active-filter" : ""}
-                        onClick={onActiveClickHandler}>Active</button>
-                    <button
+                        onClick={onActiveClickHandler}>Active</Button>
+                    <Button
                         className={props.filter === "complited" ? "active-filter" : ""}
-                        onClick={onComplitedClickHandler}>Completed</button>
+                        onClick={onComplitedClickHandler}>Completed</Button>
                 </div>
             </div>
         </div>
