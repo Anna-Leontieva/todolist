@@ -3,6 +3,8 @@ import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
 import AddItemForm from '../AddItemForm';
 import EditableSpan from '../EditableSpan';
 import { FilterValuesType, TaskType } from './../App';
+import {IconButton} from '@material-ui/core';
+import {Delete} from '@material-ui/icons';
 type TodoListType = {
     id: string;
     title: string;
@@ -33,7 +35,7 @@ function TodoList(props: TodoListType) {
         <div className="App">
 
             <div>
-                <h3><EditableSpan title={props.title} changeTitle={changeTitle}/><button onClick={removeTodoList}>X</button></h3>
+                <h3><EditableSpan title={props.title} changeTitle={changeTitle}/><IconButton  onClick={removeTodoList}><Delete/></IconButton></h3>
          
                <AddItemForm addItem={addTask}/>
                 <ul>
@@ -52,7 +54,7 @@ function TodoList(props: TodoListType) {
                                         onChange={changeStatus}
                                      />
                                     <EditableSpan title={task.title} changeTitle={changeTaskTitle}/>
-                                    <button onClick={removeTask}>x</button>
+                                    <IconButton onClick={removeTask}><Delete/></IconButton>
 
                                 </li>)
                         })
