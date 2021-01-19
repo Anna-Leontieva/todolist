@@ -98,6 +98,10 @@ function App() {
             [todoListID]: []
         })
     }
+    function removeTodoList(todoListID:string){
+     setTodoLists(todoLists.filter(tl=>tl.id!==todoListID));
+     delete tasks[todoListID]           //delete у обьекта оператор удаления
+    }
     function changeTodoListTitle(title:string,todoListID:string){
         const todoList=todoLists.find(tl=>tl.id===todoListID);
           if(todoListID){
@@ -133,6 +137,7 @@ function App() {
                             changeStatus={changeStatus}
                             changeTaskTitle={changeTaskTitle}
                             changeTodoListTitle={changeTodoListTitle}
+                            removeTodoList={removeTodoList}
                         />)
                 })
             }

@@ -14,6 +14,7 @@ type NewType = {
     filter: FilterValuesType;
     changeTaskTitle: (taskID: string, title: string, todoListID: string) => void;
     changeTodoListTitle:(title:string,todoListID: string)=>void
+    removeTodoList:(todoListID:string)=>void
 };
 
 type TodoListType = NewType
@@ -26,6 +27,7 @@ function TodoList(props: TodoListType) {
     const onAllClickHandler = () => { props.changeFilter("all",props.id) }
     const onActiveClickHandler = () => { props.changeFilter("active",props.id) }
     const onComplitedClickHandler = () => { props.changeFilter("complited",props.id) }
+    const removeTodoList=()=>{props.removeTodoList(props.id)}
     const changeTitle=(title:string)=>{
         props.changeTodoListTitle(title,props.id)
     }
@@ -33,7 +35,8 @@ function TodoList(props: TodoListType) {
         <div className="App">
 
             <div>
-                <h3><EditableSpan title={props.title} changeTitle={changeTitle}/></h3>
+                <h3><EditableSpan title={props.title} changeTitle={changeTitle}/><button onClick={removeTodoList}>X</button></h3>
+         
                <AddItemForm addItem={addTask}/>
                 <ul>
                     {
