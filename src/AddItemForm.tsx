@@ -1,5 +1,5 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react';
-import {IconButton} from '@material-ui/core';
+import {IconButton,TextField} from '@material-ui/core';
 import {AddBox} from '@material-ui/icons';
 
 type AddItemFormPropsType ={
@@ -28,13 +28,22 @@ function AddItemForm(props:AddItemFormPropsType){
     return(
         <div>
      
-        {/* локальный импут, e.currentTarget===input   */}   <input value={title}
+        {/* локальный импут, e.currentTarget===input   */} 
+        <TextField value={title}
             onChange={onChangeHandler}
             onKeyPress={onKeyPressHandler} 
-            className={error?"error":""}/>  {/*При нажатиии Enter будет вводиться  Task */}
-        {/* e.currentTarget ==== input */}
+            error={!!error}
+            helperText={error}
+            label={"Title"}   //похоже на плейсхолдер и label одновременно
+            /> 
+            
+        {/* />  <input value={title}
+            onChange={onChangeHandler}
+            onKeyPress={onKeyPressHandler} 
+            className={error?"error":""}/>  При нажатиии Enter будет вводиться  Task 
+         e.currentTarget ==== input */}
         <IconButton  color="primary" onClick={addItem}><AddBox/></IconButton>
-        {error && <div className={"error-message"}>{error}</div>}
+        {/* {error && <div className={"error-message"}>{error}</div>} */}
     </div>
    
     );
