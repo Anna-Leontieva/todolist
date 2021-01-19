@@ -115,7 +115,8 @@ function App() {
     return (
         <div className="App">
             <AppBar position="static">
-                <Toolbar>
+                <Toolbar style={{display:"flex",justifyContent:"space-between"}}>
+                 
                     <IconButton edge="start" color="inherit" aria-label="menu">
                         <Menu/>
                     </IconButton>
@@ -123,10 +124,11 @@ function App() {
                         News
                     </Typography>
                     <Button color="inherit">Login</Button>
+           
                 </Toolbar>
             </AppBar>
             <Container fixed>
-            <Grid container style={{marginTop:"30px"}}>
+            <Grid container style={{margin:"15px"}}>
             <AddItemForm addItem={addTodoList}/>
             </Grid>
             <Grid container spacing={5}>
