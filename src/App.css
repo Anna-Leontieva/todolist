@@ -1,18 +1,8 @@
-.App {
+/* .App {
   padding: 30px;
   display: flex;
-}
+} */
 
-
-.error{
-  border: red 1px solid;
-}
-.error-message{
-   color: red;
-}
-.active-filter{
- background-color: rgb(5, 109, 109);
-}
 .is-done{
 opacity: 0.5;
 }
