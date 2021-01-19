@@ -65,20 +65,20 @@ function TodoList(props: TodoListType) {
                     <Button 
                     style={{marginRight:"3px"}}
                     size={"small"}
-                    variant={props.filter==="all"?"outlined":"contained"}
+                    variant={props.filter==="all"?"contained":"outlined"}
                     color={"primary"}
                         // className={props.filter === "all" ? "active-filter" : ""}
                         onClick={onAllClickHandler}>All</Button>
                     <Button
                     style={{marginRight:"3px"}}
                     size={"small"}
-                    variant={props.filter==="active"?"outlined":"contained"}
+                    variant={props.filter==="active"?"contained":"outlined"}
                     color={"primary"}
                         // className={props.filter === "active" ? "active-filter" : ""}
                         onClick={onActiveClickHandler}>Active</Button>
                     <Button
                     size={"small"}
-                    variant={props.filter==="complited"?"outlined":"contained"}
+                    variant={props.filter==="complited"?"contained":"outlined"}
                     color={"primary"}
                         // className={props.filter === "complited" ? "active-filter" : ""}
                         onClick={onComplitedClickHandler}>Completed</Button>
