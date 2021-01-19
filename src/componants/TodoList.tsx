@@ -38,7 +38,7 @@ function TodoList(props: TodoListType) {
                 <h3><EditableSpan title={props.title} changeTitle={changeTitle}/><IconButton  onClick={removeTodoList}><Delete/></IconButton></h3>
          
                <AddItemForm addItem={addTask}/>
-                <ul>
+                <ul style={{listStyle:"none",padding:"0px"}}>
                     {
                         props.tasks.map(task => {
                             const removeTask = () => { props.removeTask(task.id,props.id) }
