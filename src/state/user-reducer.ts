@@ -28,3 +28,4 @@ export function userReducer(user: UserType, action: ActionType) {
             return user;
     }
 }
+//Описание функиции находиться в типе  action

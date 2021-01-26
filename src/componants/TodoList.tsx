@@ -5,7 +5,7 @@ import EditableSpan from '../EditableSpan';
 import { FilterValuesType, TaskType } from './../App';
 import {IconButton,Checkbox,Button} from '@material-ui/core';
 import {Delete} from '@material-ui/icons';
-type TodoListType = {
+export type TodoListType = {
     id: string;
     title: string;
     tasks: Array<TaskType>;
